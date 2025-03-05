@@ -45,10 +45,24 @@ async function cerrarSesion() {
     });
 
     if (res.ok) {
+        await Swal.fire({
+            title: "Sesión cerrada",
+            text: "Has cerrado sesión exitosamente.",
+            icon: "success",
+            confirmButtonText: "Aceptar"
+        });
+
         window.location.href = "/Usuario/Login";
-        alert("Sesion cerrada");
+    } else {
+        Swal.fire({
+            title: "Error",
+            text: "No se pudo cerrar la sesión.",
+            icon: "error",
+            confirmButtonText: "Aceptar"
+        });
     }
 }
+
 
 
 async function obtenerEstadisticas() {

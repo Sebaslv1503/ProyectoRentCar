@@ -100,7 +100,7 @@ function generarTabla(res) {
         contenido += "<th>" + cabeceras[i] + "</th>";
     }
 
-    if (objConfiguracionGlobal.editar || objConfiguracionGlobal.eliminar || objConfiguracionGlobal.agregar || objConfiguracionGlobal.continuar) {
+    if (objConfiguracionGlobal.editar || objConfiguracionGlobal.eliminar || objConfiguracionGlobal.agregar || objConfiguracionGlobal.continuar || objConfiguracionGlobal.devolver) {
         contenido += "<th>Operaciones</th>";
     }
 
@@ -165,7 +165,7 @@ function generarTabla(res) {
         }
 
         // Botones de editar/eliminar
-        if (objConfiguracionGlobal.editar || objConfiguracionGlobal.eliminar || objConfiguracionGlobal.agregar || objConfiguracionGlobal.continuar) {
+        if (objConfiguracionGlobal.editar || objConfiguracionGlobal.eliminar || objConfiguracionGlobal.agregar || objConfiguracionGlobal.continuar || objConfiguracionGlobal.devolver) {
             contenido += "<td>";
 
             if (objConfiguracionGlobal.editar) {
@@ -209,6 +209,17 @@ function generarTabla(res) {
                     Continuar
                 </i>`;
             }
+            contenido += " ";
+            if (objConfiguracionGlobal.devolver) {
+                contenido += `
+                <i class="btn btn-success devolver-btn"  onclick="devolver(` + obj.id + `)" data-id="` + obj.id + `">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-plus me-2" viewBox="0 0 16 16">
+                        <path d="M8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z"/>
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                    </svg>
+                    Devolver
+                </i>`;
+            }
 
             contenido += "</td>";
         }
@@ -228,7 +239,7 @@ function generarTabla(res) {
 
 async function exitoAlert() {
     window.Swal.fire({
-        title: "Modificado correctamente",
+        title: "Exito!",
         icon: "success",
         timer: 2000,
         showConfirmButton: false

@@ -348,6 +348,50 @@ namespace CapaDatos
         }
 
 
+        public bool Devolver(int idVehiculo)
+        {
+            bool actualizado = false;
+
+            using (SqlConnection cn = new SqlConnection(this.cadena))
+            {
+                try
+                {
+                    cn.Open();
+
+                    using (SqlTransaction transaccion = cn.BeginTransaction())
+                    {
+                        try
+                        {
+                            using (SqlCommand cmdVehiculo = new SqlCommand("UPDATE Vehiculos SET Estado = 'Disponible' WHERE Id = @IdVehiculo", cn, transaccion))
+                            {
+                                cmdVehiculo.Parameters.AddWithValue("@IdVehiculo", idVehiculo);
+                                cmdVehiculo.ExecuteNonQuery();
+                            }
+
+                            using (SqlCommand cmdReserva = new SqlCommand("UPDATE Reservas SET Estado = 'Cancelada' WHERE VehiculoId = @IdVehiculo AND Estado = 'Confirmada'", cn, transaccion))
+                            {
+                                cmdReserva.Parameters.AddWithValue("@IdVehiculo", idVehiculo);
+                                cmdReserva.ExecuteNonQuery();
+                            }
+
+                            transaccion.Commit();
+                            actualizado = true;
+                        }
+                        catch (Exception)
+                        {
+                            transaccion.Rollback();
+                            throw;
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    cn.Close();
+                    throw;
+                }
+            }
+            return actualizado;
+        }
 
 
 

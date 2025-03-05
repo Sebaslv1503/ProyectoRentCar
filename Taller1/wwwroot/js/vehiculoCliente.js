@@ -1,6 +1,7 @@
 ﻿window.onload = function () {
     listarVehiculo();
-
+    BuscarVehiculo();
+     
 }
 
 let objVehiculo;

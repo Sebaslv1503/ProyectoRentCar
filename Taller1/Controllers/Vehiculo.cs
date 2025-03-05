@@ -74,6 +74,12 @@ namespace Taller1.Controllers
 
             return Json(new { success = false, message = "Vehículo no encontrado." });
         }
+        [HttpPost]
+        public JsonResult DevolverVehiculo(int id)
+        {
+            bool resultado = VehiculoBL.DevolverVehiculo(id);
+            return Json(new { success = resultado });
+        }
 
 
 

@@ -54,6 +54,12 @@ namespace CapaNegocio
             VehiculoDAL vehiculoDAL = new VehiculoDAL();
             return vehiculoDAL.ObtenerVehiculoPorId(id);
         }
+        public static bool DevolverVehiculo(int idVehiculo)
+        {
+            VehiculoDAL vehiculoDAL = new VehiculoDAL();
+            return vehiculoDAL.Devolver(idVehiculo);
+        }
+
 
 
 

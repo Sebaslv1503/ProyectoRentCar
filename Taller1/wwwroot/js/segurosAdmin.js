@@ -9,8 +9,7 @@ async function listarSeguros() {
         url: "seguro/listarSeguros",
         cabeceras: ["Id Seguro", "Reserva Id", "Tipo de Seguro ","Costo"],
         propiedades: ["id", "idReserva", "tipoSeguro", "precio"],
-        editar: true,
-        eliminar: true,
+        
         divContenedorTabla: "divTable"
 
     }
