@@ -24,5 +24,9 @@ namespace Taller1.Controllers
             
             return PagoBL.ListarPagos();
         }
+        public bool EliminarPago(int id)
+        {
+            return PagoBL.EliminarPago(id);
+        }
     }
 }

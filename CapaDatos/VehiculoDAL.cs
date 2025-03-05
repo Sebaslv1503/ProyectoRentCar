@@ -300,6 +300,53 @@ namespace CapaDatos
 
             return lista;
         }
+        public VehiculoCLS ObtenerVehiculoPorId(int id)
+        {
+            VehiculoCLS vehiculo = null;
+
+            using (SqlConnection cn = new SqlConnection(this.cadena))
+            {
+                cn.Open();
+
+                using (SqlCommand cmd = new SqlCommand("usp_ObtenerVehiculoPorId", cn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@VehiculoId", id);
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            vehiculo = new VehiculoCLS
+                            {
+                                id = Convert.ToInt32(dr["VehiculoId"]),
+                                marca = dr["Marca"].ToString(),
+                                modelo = dr["Modelo"].ToString(),
+                                anio = Convert.ToInt32(dr["Anio"]),
+                                precio = Convert.ToDecimal(dr["Precio"]),
+                                estado = dr["Estado"].ToString(),
+                                categoria = dr["Categoria"].ToString()
+                            };
+
+                            // Convertir la imagen a Base64 si no es NULL
+                            if (dr["Imagen"] != DBNull.Value)
+                            {
+                                byte[] imagenBytes = (byte[])dr["Imagen"];
+                                string imagenBase64 = Convert.ToBase64String(imagenBytes);
+                                vehiculo.imagenString = "data:image/png;base64," + imagenBase64;
+                            }
+                            else
+                            {
+                                vehiculo.imagenString = "";
+                            }
+                        }
+                    }
+                }
+            }
+
+            return vehiculo;
+        }
+
 
 
 

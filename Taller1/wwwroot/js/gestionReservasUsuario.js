@@ -82,7 +82,7 @@ function actualizarSeguro() {
     document.getElementById("costo").value = costoSeguro;
     document.getElementById("descripcionSeguro").textContent = descripcion;
 
-    // 📌 Volver a calcular el total con el nuevo seguro
+    
     calcularTotalPago();
 }
 
@@ -199,7 +199,7 @@ document.getElementById("tipoSeguro").addEventListener("change", function () {
 async function confirmarReservaJS() {
     let form = document.getElementById("frmReservaCompleta");
     let frm = new FormData(form);
-    alert("aaaa");
+    
     let res = await fetch("/Reserva/ConfirmarReserva", {
         method: "POST",
         body: frm
@@ -208,9 +208,9 @@ async function confirmarReservaJS() {
     let data = await res.json();
     listarReservas();
     if (data.success) {
-        alert("✅ Reserva confirmada con éxito.");
+        
         window.location.reload();
     } else {
-        alert("❌ Error al confirmar la reserva.");
+        window.location.href = "/Pago/Index";
     }
 }

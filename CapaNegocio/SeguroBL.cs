@@ -15,6 +15,11 @@ namespace CapaNegocio
             SeguroDAL seguroDAL = new SeguroDAL();
             return seguroDAL.RegistrarSeguro(obj);
         }
+        public List<SeguroCLS> ListarSeguros()
+        {
+            SeguroDAL seguroDAL = new SeguroDAL();
+            return seguroDAL.ListarTodosLosSeguros();
+        }
 
     }
 }

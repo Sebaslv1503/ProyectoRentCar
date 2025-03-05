@@ -1,14 +1,15 @@
 ﻿window.onload = function () {
-    listarTodosPagos();
+    listarSeguros();
 
 }
 
-async function listarTodosPagos() {
+async function listarSeguros() {
 
     objPagos = {
-        url: "pago/ListarTodosPagos",
-        cabeceras: ["Id Reserva", "Fecha Inicio", "Fecha Final", "Marca", "Modelo", "Precio Total", "Imagen"],
-        propiedades: ["idPago", "fechaInicio", "fechaFin", "marcaVehiculo", "modeloVehiculo", "montoPago", "imagenVehiculo"],
+        url: "seguro/listarSeguros",
+        cabeceras: ["Id Seguro", "Reserva Id", "Tipo de Seguro ","Costo"],
+        propiedades: ["id", "idReserva", "tipoSeguro", "precio"],
+        editar: true,
         eliminar: true,
         divContenedorTabla: "divTable"
 

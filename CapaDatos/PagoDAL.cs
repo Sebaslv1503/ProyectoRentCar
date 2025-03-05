@@ -108,6 +108,34 @@ namespace CapaDatos
 
             return lista;
         }
+        public bool EliminarPago(int id)
+        {
+            bool eliminado = false;
+
+            using (SqlConnection cn = new SqlConnection(this.cadena))
+            {
+                try
+                {
+                    cn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("usp_EliminarPago", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@PagoId", id);
+
+                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        eliminado = filasAfectadas > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    cn.Close();
+                    throw new Exception("Error al eliminar el pago: " + ex.Message);
+                }
+            }
+
+            return eliminado;
+        }
 
     }
 }

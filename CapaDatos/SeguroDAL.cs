@@ -39,6 +39,45 @@ namespace CapaDatos
             }
             return registrado;
         }
+        public List<SeguroCLS> ListarTodosLosSeguros()
+        {
+            List<SeguroCLS> seguros = new List<SeguroCLS>();
+
+            using (SqlConnection cn = new SqlConnection(this.cadena))
+            {
+                try
+                {
+                    cn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand("usp_ListarTodosLosSeguros", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                SeguroCLS seguro = new SeguroCLS
+                                {
+                                    id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                    idReserva = reader.GetInt32(reader.GetOrdinal("ReservaId")),
+                                    tipoSeguro = reader.GetString(reader.GetOrdinal("TipoSeguro")),
+                                    precio = reader.GetDecimal(reader.GetOrdinal("Costo"))
+                                };
+
+                                seguros.Add(seguro);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error al listar los seguros: " + ex.Message);
+                }
+            }
+
+            return seguros;
+        }
 
 
     }

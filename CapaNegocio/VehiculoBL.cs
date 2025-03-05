@@ -49,6 +49,13 @@ namespace CapaNegocio
             return vehiculoDAL.FiltrarVehiculos(filtro);
         }
 
+        public static VehiculoCLS ObtenerVehiculoPorId(int id)
+        {
+            VehiculoDAL vehiculoDAL = new VehiculoDAL();
+            return vehiculoDAL.ObtenerVehiculoPorId(id);
+        }
+
+
 
 
 

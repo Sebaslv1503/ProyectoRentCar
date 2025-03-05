@@ -235,3 +235,33 @@ async function exitoAlert() {
     });
 }
 
+function mostrarAlerta(titulo, mensaje, tipo, callback = null) {
+    Swal.fire({
+        title: titulo,
+        text: mensaje,
+        icon: tipo, 
+        confirmButtonText: "Aceptar",
+        allowOutsideClick: false
+    }).then((result) => {
+        if (result.isConfirmed && callback) {
+            callback(); 
+        }
+    });
+}
+
+function mostrarConfirmacion(titulo, texto, tipo) {
+    return Swal.fire({
+        title: titulo,
+        text: texto,
+        icon: tipo,
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, confirmar",
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        return result.isConfirmed;
+    });
+}
+
+

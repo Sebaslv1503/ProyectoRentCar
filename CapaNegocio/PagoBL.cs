@@ -21,5 +21,12 @@ namespace CapaNegocio
             return reservaDAL.ListarPagos(idUsuario);
         }
 
+        public static bool EliminarPago(int id)
+        {
+            PagoDAL pagoDAL = new PagoDAL();
+            return pagoDAL.EliminarPago(id);
+        }
+
+
     }
 }

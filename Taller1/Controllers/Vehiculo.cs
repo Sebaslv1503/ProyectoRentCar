@@ -62,6 +62,19 @@ namespace Taller1.Controllers
             return VehiculoBL.ObtenerVehiculosFiltrados(filtro);
         }
 
+        [HttpGet]
+        public JsonResult ObtenerVehiculo(int id)
+        {
+            VehiculoCLS vehiculo = VehiculoBL.ObtenerVehiculoPorId(id);
+
+            if (vehiculo != null)
+            {
+                return Json(new { success = true, data = vehiculo });
+            }
+
+            return Json(new { success = false, message = "Vehículo no encontrado." });
+        }
+
 
 
 
