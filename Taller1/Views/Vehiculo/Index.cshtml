@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewData["Title"] = "Vehiculos";
+}
+<div class="content">
+
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Lista Vehiculos</h5>
+        </div>
+        <div class="card-body">
+            <div id="divTable"></div> <!-- Aquí se cargará la tabla -->
+        </div>
+    </div>
+
+    <button class="btn btn-success btn-lg d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#modalRegistro">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle me-2" viewBox="0 0 16 16">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+        </svg>
+        Agregar Nuevo Vehículo
+    </button>
+
+
+    <!-- Modal Modificar -->
+    <div class="modal fade" id="modalVehiculo" tabindex="-1" aria-labelledby="modalModificarMedicamentoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Header del modal -->
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="modalModificarMedicamentoLabel">Modificar Vehiculo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo del modal -->
+                <div class="modal-body">
+                    <form id="frmModificar" enctype="multipart/form-data">
+                        <label for="id" class="form-label">ID</label>
+                        <input type="number" step="0.01" id="txtId" name="id" class="form-control" readonly placeholder="El id se generará automaticamente...">
+
+                        <label for="marca" class="form-label">Marca</label>
+                        <select id="marcaM" name="marca" class="form-control" required>
+                            <option value="">Seleccione una marca</option>
+                        </select>
+
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input type="text" id="modeloM" name="modelo" class="form-control" required>
+
+                        <label for="anio" class="form-label">Año</label>
+                        <select id="anioM" name="anio" class="form-control" required>
+                            <option value="">Seleccione un año</option>
+                        </select>
+
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" step="0.01" id="precioM" name="precio" class="form-control" required>
+
+                        <label for="estado" class="form-label">Estado</label>
+                        <select id="estadoM" name="estado" class="form-control">
+                            <option value="Disponible">Disponible</option>
+                            <option value="Reservado">Reservado</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                        </select>
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <select id="categoriaM" name="categoria" class="form-control">
+                            <option value="Economico">Económicos</option>
+                            <option value="Eventos">Para Eventos</option>
+                            <option value="TodoTerreno">Todo Terreno</option>
+                            <option value="Familiares">Familiares</option>
+                            <option value="Deluxe">De Lujo</option>
+                            <option value="Vans">Vans</option>
+                        </select>
+
+                        <label for="imagenFile" class="form-label">Imagen</label>
+                        <input type="file" id="imagenFileM" name="imagenFile" class="form-control" accept="image/*" required>
+                    </form>
+
+                </div>
+
+                <!-- Footer del modal con botones -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="modificarVehiculoJS()">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Registro-->
+    <div class="modal fade" id="modalRegistro" tabindex="-1" aria-labelledby="modalModificarMedicamentoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Header del modal -->
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="modalModificarMedicamentoLabel">Agregar Vehiculo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo del modal -->
+                <div class="modal-body">
+                    <form id="frmVehiculo" enctype="multipart/form-data">
+                        
+                        <label for="marca" class="form-label">Marca</label>
+                        <select id="marca" name="marca" class="form-control" required>
+                            <option value="">Seleccione una marca</option>
+                        </select>
+
+                        <label for="modelo" class="form-label">Modelo</label>
+                        <input type="text" id="modelo" name="modelo" class="form-control" required>
+
+                        <label for="anio" class="form-label">Año</label>
+                        <select id="anio" name="anio" class="form-control" required>
+                            <option value="">Seleccione un año</option>
+                        </select>
+
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" step="0.01" id="precio" name="precio" class="form-control" required>
+
+                        <label for="estado" class="form-label">Estado</label>
+                        <select id="estado" name="estado" class="form-control">
+                            <option value="Disponible">Disponible</option>
+                            <option value="Reservado">Reservado</option>
+                            <option value="Mantenimiento">Mantenimiento</option>
+                        </select>
+                        <label for="categoria" class="form-label">Categoria</label>
+                        <select id="categoria" name="categoria" class="form-control">
+                            <option value="Economico">Económicos</option>
+                            <option value="Eventos">Para Eventos</option>
+                            <option value="TodoTerreno">Todo Terreno</option>
+                            <option value="Familiares">Familiares</option>
+                            <option value="Deluxe">De Lujo</option>
+                            <option value="Vans">Vans</option>
+                        </select>
+
+                        <label for="imagenFile" class="form-label">Imagen</label>
+                        <input type="file" id="imagenFile" name="imagenFile" class="form-control" accept="image/*" required>
+                    </form>
+
+                </div>
+
+                <!-- Footer del modal con botones -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" onclick="registroVehiculoJS()">Registrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="~/js/vehiculo.js"></script>
+<script src="~/js/queries.js"></script>
+

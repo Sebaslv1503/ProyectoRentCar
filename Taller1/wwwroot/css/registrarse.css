@@ -1,0 +1,162 @@
+:root {
+    --white: #f9f9f9; /* Color blanquecino para el fondo del formulario */
+    --primary-section: #ffffff; /* Fondo del body en blanco */
+    --secondary-section: #1a1a1a; /* Color negro para botones e iconos */
+    --gray: #6a6a6a; /* Gris más oscuro para bordes */
+    --card-bg: #ffffff; /* Fondo del formulario */
+    --hover: #333333; /* Negro más claro para hover */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    
+    color: var(--secondary-section);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background:  url("https://i.pinimg.com/1200x/f5/1d/cb/f51dcbd5f16033203bafadfe9c2d97d4.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.container {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--secondary-section);
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+    .input-group input {
+        width: 100%;
+        padding: 10px 10px 10px 40px;
+        border: none;
+        border-bottom: 2px solid var(--gray);
+        background-color: transparent;
+        color: var(--secondary-section);
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+    }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--hover);
+        }
+
+    .input-group i {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--secondary-section);
+        font-size: 20px;
+    }
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--secondary-section);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+    button:hover {
+        background-color: var(--hover);
+        transform: translateY(-2px);
+    }
+
+.terms {
+    margin-top: 20px;
+    font-size: 12px;
+    text-align: center;
+    color: var(--gray);
+}
+
+    .terms a {
+        color: var(--secondary-section);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+        .terms a:hover {
+            color: var(--hover);
+        }
+.input-group select {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    border: none;
+    border-bottom: 2px solid var(--gray);
+    background-color: var(--white);
+    color: var(--secondary-section);
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    appearance: none; /* Oculta la apariencia por defecto */
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Agrega una flecha personalizada */
+.input-group {
+    position: relative;
+}
+
+    .input-group select {
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpolygon points='0,0 20,0 10,10' fill='%231a1a1a'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+        padding-right: 30px;
+    }
+
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--hover);
+        }
+
+    /* Para mejorar la alineación del ícono */
+    .input-group i {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--secondary-section);
+        font-size: 20px;
+        z-index: 10;
+    }

@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Dashboard Empleado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <h2>Bienvenido, @Context.Session.GetString("Nombre")</h2>
+<div class="animated fadeIn">
+    <!-- Widgets  -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-1">
+                            <i class="pe-7s-cash"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text">$<span class="count">23569</span></div>
+                                <div class="stat-heading">Ingresos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-2">
+                            <i class="pe-7s-cart"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                <div class="stat-text"><span class="count">3435</span></div>
+                                <div class="stat-heading">Ventas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="stat-widget-five">
+                        <div class="stat-icon dib flat-color-3">
+                            <i class="pe-7s-car"></i>
+                        </div>
+                        <div class="stat-content">
+                            <div class="text-left dib">
+                                    <div class="stat-text"><span class="count" id="cantidadVehiculos">Cargando...</span></div>
+                                <div class="stat-heading">Vehiculos</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="stat-widget-five">
+                            <div class="stat-icon dib flat-color-4">
+                                <i class="pe-7s-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="text-left dib">
+                                    <div class="stat-text"><span class="count" id="cantidadClientes">Cargando...</span></div>
+                                    <div class="stat-heading">Clientes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            
+    </div>
+
+</div>
+    
+    
+
+    
+</div>
+
+
+<script src="~/js/usuario.js"></script>
+<script src="~/js/queries.js"></script>
+

@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewData["Title"] = "GestionReserva";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<!-- Header Start -->
+<div class="container-fluid page-header">
+    <div class="container">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <h3 class="display-4 text-white text-uppercase">Reservas</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">Reserva</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+<div class="container-fluid booking mt-5 pb-5">
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Lista de Reservas</h5>
+        </div>
+        <div class="card-body">
+            <div id="divTable"></div> <!-- Aquí se cargará la tabla -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!-- Modal de Reserva Completa -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="modalReservaCompletaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <!-- ID Reserva -->
+                
+                <h5 class="modal-title" id="modalReservaCompletaLabel">Reserva N° <span id="reservaId"></span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <form id="frmReservaCompleta">
+
+                    <input type="hidden" name="id" id="idReservaInput"/>
+
+                    <input type="hidden" name="montoPago" id="montoPagoInput" />
+
+                    <div class="container">
+                        <!-- Sección de Cliente y Vehículo -->
+                        <div class="row">
+                            <!-- Imagen del Vehículo -->
+                            <div class="col-md-5 text-center">
+                                <img id="imagenVehiculo" src="" alt="Vehículo" class="img-fluid rounded shadow">
+                            </div>
+
+                            <!-- Información del Cliente y Vehículo -->
+                            <div class="col-md-7">
+                                <h5 class="fw-bold">Datos del Cliente</h5>
+
+                                
+
+                                <p><strong>Nombre:</strong> <span id="nombreCliente"></span></p>
+                                <p><strong>Email:</strong> <span id="emailCliente"></span></p>
+                                <p><strong>Teléfono:</strong> <span id="telefonoCliente"></span></p>
+
+                                <h5 class="fw-bold mt-3">Detalles del Vehículo</h5>
+                                <p><strong>Marca:</strong> <span id="marcaVehiculo"></span></p>
+                                <p><strong>Modelo:</strong> <span id="modeloVehiculo"></span></p>
+                                <p><strong>Año:</strong> <span id="anioVehiculo"></span></p>
+                                <p><strong>Precio/Día:</strong> <span id="precioVehiculo"></span></p>
+                                <p><strong>Estado:</strong> <span id="estadoVehiculo"></span></p>
+                                <p><strong>Categoría:</strong> <span id="categoriaVehiculo"></span></p>
+                            </div>
+                        </div>
+
+                        <!-- Información de la Reserva (Fechas) -->
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <label for="fechaInicio" class="form-label fw-bold">Fecha de Inicio</label>
+                                <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="fechaFin" class="form-label fw-bold">Fecha de Fin</label>
+                                <input type="date" class="form-control" id="fechaFin" name="fechaFin" required>
+                            </div>
+                        </div>
+
+                        <!-- Información del Seguro -->
+                        <div class="row mt-4">
+                            <div class="col">
+                                <h5 class="fw-bold">Seguro Contratado</h5>
+                                <label for="tipoSeguro" class="form-label">Tipo de Seguro</label>
+                                <select class="form-control" name="tipoSeguro" id="tipoSeguro" onchange="actualizarSeguro()">
+                                    <option value="">Seleccione un seguro</option>
+                                    <option value="Básico">Básico</option>
+                                    <option value="Intermedio">Intermedio</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                                <label for="costo" class="form-label mt-2">Costo</label>
+                                <input type="number" step="0.01" class="form-control" name="costoSeguro" id="costo" readonly>
+                                <div class="mt-2">
+                                    <label class="form-label">Descripción del Seguro</label>
+                                    <p id="descripcionSeguro" class="alert alert-info">Seleccione un seguro para ver la descripción.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Información del Pago -->
+                        <div class="row mt-4">
+                            <div class="col">
+                                <h5 class="fw-bold">Detalles del Pago</h5>
+                                
+                                <p><strong>Monto Total:</strong> <span id="montoPago"></span></p>
+
+                                <label for="metodoPago" class="form-label">Método de Pago</label>
+                                <select class="form-control" id="metodoPago" name="metodoPago">
+                                    <option value="">Seleccione un método</option>
+                                    <option value="Efectivo">Efectivo</option>
+                                    <option value="Tarjeta">Tarjeta</option>
+                                    <option value="Transferencia">Transferencia</option>
+                                </select>
+                                <label for="fechaPago" class="form-label mt-2">Fecha de Pago</label>
+                                <input type="date" class="form-control" id="fechaPago" name="fechaPago" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Botón de Confirmar -->
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-success" onclick="confirmarReservaJS()">Confirmar Reserva</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="~/js/queries.js"></script>
+<script src="~/js/gestionreservasusuario.js"></script>
+

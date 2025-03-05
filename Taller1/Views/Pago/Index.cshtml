@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<!-- Header Start -->
+<div class="container-fluid page-header">
+    <div class="container">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <h3 class="display-4 text-white text-uppercase">Pagos</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">Pagos</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<div class="container-fluid booking mt-5 pb-5">
+    <div class="card shadow-lg">
+
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Lista de Pagos</h5>
+        </div>
+        <div class="card-body">
+            <div id="divTable"></div> <!-- Aquí se cargará la tabla -->
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/queries.js"></script>
+<script src="~/js/pago.js"></script>

@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_LayoutRegistro.cshtml";
+}
+
+<div class="container">
+    <h2>Regístrate</h2>
+    <form id="frmRegistroUsuario" method="post">
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" name="nombre" id="inputNombre" placeholder="Nombre" required>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" name="apellido" id="inputApellido" placeholder="Apellido" required>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-user-tag"></i>
+            <input type="text" name="nombreUsuario" id="inputUsuario" placeholder="Usuario" required>
+        </div>
+        <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" name="passwordHash" id="inputPassword" placeholder="Contraseña" required>
+        </div>
+
+        <div class="input-group">
+            <i class="fas fa-user-cog"></i>
+            <select name="rol" id="inputRol" required onchange="mostrarCampos()">
+                <option value="">Seleccione un rol</option>
+                <option value="Cliente">Cliente</option>
+                <option value="Empleado">Empleado</option>
+            </select>
+        </div>
+
+        <!-- Campos adicionales para Cliente -->
+        <div class="input-group cliente-campo d-none">
+            <i class="fas fa-envelope"></i>
+            <input type="email" name="correo" id="inputCorreo" placeholder="Correo electrónico">
+        </div>
+        <div class="input-group cliente-campo d-none">
+            <i class="fas fa-phone"></i>
+            <input type="text" name="telefono" id="inputTelefono" placeholder="Teléfono">
+        </div>
+
+        <!-- Campo adicional para Empleado -->
+        <div class="input-group empleado-campo d-none">
+            <i class="fas fa-briefcase"></i>
+            <input type="text" name="cargo" id="inputCargo" placeholder="Cargo">
+        </div>
+
+        <button type="button" onclick="registroUsuarioJS()">Crear cuenta</button>
+
+        <p class="terms">
+            Al registrarte, aceptas nuestros <a href="#">Términos y Condiciones</a> y
+            <a href="#">Política de Privacidad</a>.
+        </p>
+    </form>
+</div>
+
+<script>
+    function mostrarCampos() {
+        let rol = document.getElementById("inputRol").value;
+        let clienteCampos = document.querySelectorAll(".cliente-campo");
+        let empleadoCampos = document.querySelectorAll(".empleado-campo");
+
+        if (rol === "Cliente") {
+            clienteCampos.forEach(el => el.classList.remove("d-none"));
+            empleadoCampos.forEach(el => el.classList.add("d-none"));
+        } else if (rol === "Empleado") {
+            empleadoCampos.forEach(el => el.classList.remove("d-none"));
+            clienteCampos.forEach(el => el.classList.add("d-none"));
+        } else {
+            clienteCampos.forEach(el => el.classList.add("d-none"));
+            empleadoCampos.forEach(el => el.classList.add("d-none"));
+        }
+    }
+</script>
+
+<script src="~/js/usuario.js"></script>
+<script src="~/js/queries.js"></script>

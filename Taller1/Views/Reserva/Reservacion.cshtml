@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "Reservacion";
+	Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>Detalles del Vehículo</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Imagen del Vehículo -->
+                <div class="col-md-5 text-center">
+                    <img src="@ViewBag.Imagen" alt="Vehículo" class="img-fluid rounded shadow" style="max-width: 100%;">
+                </div>
+
+                <!-- Información del Vehículo -->
+                <div class="col-md-7">
+                    <h5><strong>Marca:</strong> @ViewBag.Marca</h5>
+                    <h5><strong>Modelo:</strong> @ViewBag.Modelo</h5>
+                    <h5><strong>Año:</strong> @ViewBag.Anio</h5>
+                    <h5><strong>Precio por día:</strong> $@ViewBag.Precio</h5>
+                    <h5><strong>Categoría:</strong> @ViewBag.Categoria</h5>
+                    <h5><strong>Estado:</strong> @ViewBag.Estado</h5>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Formulario de Reservación -->
+            <h4 class="text-center">Reservar Vehículo</h4>
+            <form id="frmReserva">
+                <input type="hidden" id="idCliente" name="idCliente" value="@ViewBag.IdCliente">
+                <input type="hidden" id="idVehiculo" name="idVehiculo" value="@ViewBag.IdVehiculo">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                        <input type="date" id="fechaInicio" name="fechaInicio" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="fechaFin" class="form-label">Fecha de Fin</label>
+                        <input type="date" id="fechaFin" name="fechaFin" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="text-center mt-3">
+                    <button type="button" class="btn btn-success" onclick="guardarReserva()">Confirmar Reserva</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/reserva.js"></script>
+

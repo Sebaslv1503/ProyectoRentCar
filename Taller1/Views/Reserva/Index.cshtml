@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<!-- Header Start -->
+<div class="container-fluid page-header">
+    <div class="container">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
+            <h3 class="display-4 text-white text-uppercase">Vehiculos</h3>
+            <div class="d-inline-flex text-white">
+                <p class="m-0 text-uppercase"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-angle-double-right pt-1 px-3"></i>
+                <p class="m-0 text-uppercase">Reserva</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- Reserva Start -->
+<div class="container-fluid booking mt-5 pb-5">
+    <div class="container pb-5">
+        <div class="bg-light shadow" style="padding: 30px;">
+            <form id="frmBusqueda">
+                <div class="row align-items-center" style="min-height: 60px;">
+                    <div class="col-md-10">
+                        <div class="row">
+                            <!-- Categoría -->
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <select class="custom-select px-4" name="categoria" id="categoria" style="height: 47px;">
+                                        <option selected value="">Categorías</option>
+                                        <option value="Economico">Económicos</option>
+                                        <option value="Eventos">Para Eventos</option>
+                                        <option value="TodoTerreno">Todo Terreno</option>
+                                        <option value="Familiares">Familiares</option>
+                                        <option value="Deluxe">De Lujo</option>
+                                        <option value="Vans">Vans</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Marca -->
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <select class="custom-select px-4" name="marca" id="marca" style="height: 47px;">
+                                        <option selected value="">Marca</option>
+                                        <option value="Toyota">Toyota</option>
+                                        <option value="Nissan">Nissan</option>
+                                        <option value="Ford">Ford</option>
+                                        <option value="Chevrolet">Chevrolet</option>
+                                        <option value="Honda">Honda</option>
+                                        <option value="BMW">BMW</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Duración (Días, Semanas, Meses) -->
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <select class="custom-select px-4" name="duracion" id="duracion" style="height: 47px;" onchange="mostrarSubDuracion()">
+                                        <option selected value="">Seleccione duración</option>
+                                        <option value="dias">Días</option>
+                                        <option value="semanas">Semanas</option>
+                                        <option value="meses">Meses</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Subselección de Días/Semanas/Meses -->
+                            <div class="col-md-3">
+                                <div class="mb-3 mb-md-0">
+                                    <select class="custom-select px-4 d-none" name="subduracion" id="subduracion" style="height: 47px;"></select>
+                                </div>
+                            </div>
+
+                            <!-- Valor Máximo -->
+                            <div class="col-md-3 mt-3">
+                                <div class="mb-3 mb-md-0">
+                                    <input type="number" class="form-control p-4" name="precio" id="precio" placeholder="Valor Máx" min="0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-primary btn-block" style="height: 47px; margin-top: -2px;" onclick="BuscarVehiculo()">
+                            Buscar
+                        </button>
+                        <button type="button" class="btn btn-secondary btn-block mt-2" style="height: 47px;" onclick="limpiarFormulario()">
+                            Limpiar
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid booking mt-5 pb-5">
+<div class="card shadow-lg">
+
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Lista Vehiculos</h5>
+    </div>
+    <div class="card-body">
+        <div id="divTable"></div> <!-- Aquí se cargará la tabla -->
+    </div>
+</div>
+</div>
+
+<script src="~/js/queries.js"></script>
+<script src="~/js/reserva.js"></script>
+<script src="~/js/vehiculocliente.js"></script>
+
